@@ -1,12 +1,18 @@
-{
-    "users": [
-        {
-            "username": "1",
-            "password": "1"
-        },
-        {
-            "username": "2",
-            "password": "2"
-        }
-    ]
-}
+[
+  {
+    "username": "melo",
+    "password": "melo"
+  },
+  {
+    "username": "sem",
+    "password": "sem"
+  },
+  {
+    "username": "ibo",
+    "password": "ibo"
+  },
+  {
+    "username": "be",
+    "password": "be"
+  }
+]
