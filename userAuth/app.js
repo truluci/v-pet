@@ -6,10 +6,9 @@ const fs = require('fs').promises;
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors());
 app.use(bodyParser.json());
 
-// Route to handle user registration
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
 
@@ -18,18 +17,14 @@ app.post('/register', async (req, res) => {
     }
 
     try {
-        // Read existing user data from userData.json
         const userData = JSON.parse(await fs.readFile('../data/userData.json'));
 
-        // Check if username already exists
         if (userData.some(user => user.username === username)) {
             return res.status(400).send('Username already exists. Please choose a different username.');
         }
 
-        // Add new user to userData array
         userData.push({ username, password });
 
-        // Write updated userData back to userData.json
         await fs.writeFile('../data/userData.json', JSON.stringify(userData, null, 2));
 
         res.send('Registration successful. Please login with your credentials.');

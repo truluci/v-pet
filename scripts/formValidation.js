@@ -22,8 +22,11 @@ document.addEventListener("DOMContentLoaded", function() {
             const user = userData.find(user => user.username === username && user.password === password);
 
             if (user) {
+                // user datayı main pagede kullanmak için local storage'a kaydediyoruz
+                localStorage.setItem('currentUser', JSON.stringify(user));
+
                 alert('Login successful!');
-                window.location.href = '../pages/main.html';
+                window.location.href = '../pages/main.html'; // Redirect to main page
             } else {
                 alert('Invalid username or password. Please try again.');
             }
@@ -35,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
         loginForm.reset();
     }
 
-    // Add event listener for form submission
     loginForm.addEventListener('submit', handleFormSubmit);
 
     document.addEventListener('keypress', function(event) {
