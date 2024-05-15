@@ -105,7 +105,7 @@ function createPetForm(petType) {
     formContainer.appendChild(form);
 }
 
-function addPet(petType) {
+async function addPet(petType) {
     const form = document.getElementById('petForm');
     const name = form.elements['name'].value;
     const dob = form.elements['dob'].value;
@@ -113,20 +113,48 @@ function addPet(petType) {
     const breed = form.elements['breed'].value;
 
     if (name && dob && gender && breed) {
-        const petList = document.getElementById('petList');
-        
-        const petDiv = document.createElement('div');
-        petDiv.className = 'pet';
-        
-        petDiv.innerHTML = `<h3>${petType.charAt(0).toUpperCase() + petType.slice(1)}: ${name}</h3>
-                            <p>Date of Birth: ${dob}</p>
-                            <p>Gender: ${gender}</p>
-                            <p>Breed: ${breed}</p>`;
-        
-        petList.appendChild(petDiv);
-        
-        // Clear the form
-        document.getElementById('petFormContainer').innerHTML = '';
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (!userData) {
+            alert('User data not found. Please log in again.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const token = userData.token; // Assuming you have a token for authentication
+
+        try {
+            const response = await fetch('http://localhost:3000/add-pet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    name,
+                    dob,
+                    gender,
+                    breed,
+                    petType
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add pet.');
+            }
+
+            const responseData = await response.json();
+            console.log(responseData); // Log response from server
+            alert('Pet added successfully.');
+
+            // Clear the form
+            form.reset();
+            document.getElementById('petFormContainer').innerHTML = '';
+
+        } catch (error) {
+            console.error('Error adding pet:', error);
+            alert('Failed to add pet. Please try again.');
+        }
     } else {
         alert('Please fill out all fields.');
     }

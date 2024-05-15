@@ -34,6 +34,28 @@ app.post('/register', async (req, res) => {
     }
 });
 
+app.post('/add-pet', async (req, res) => {
+    const { name, dob, gender, breed, petType } = req.body;
+
+    if (!name || !dob || !gender || !breed || !petType) {
+        return res.status(400).send('Incomplete pet data.');
+    }
+
+    try {
+        const projectData = JSON.parse(await fs.readFile('../data/projectData.json'));
+
+        projectData.push({ name, dob, gender, breed, petType });
+
+        await fs.writeFile('../data/projectData.json', JSON.stringify(projectData, null, 2));
+
+        res.status(201).json({ message: 'Pet added successfully.' });
+
+    } catch (error) {
+        console.error('Error adding pet:', error);
+        res.status(500).send('Failed to add pet.');
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
