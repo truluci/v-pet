@@ -23,10 +23,51 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name && dob && gender && breed) {
             const userData = JSON.parse(localStorage.getItem('currentUser'));
 
+<<<<<<< HEAD
             if (!userData) {
                 alert('User data not found. Please log in again.');
                 window.location.href = 'login.html';
                 return;
+=======
+async function addPet(petType) {
+    const form = document.getElementById('petForm');
+    const name = form.elements['name'].value;
+    const dob = form.elements['dob'].value;
+    const gender = form.elements['gender'].value;
+    const breed = form.elements['breed'].value;
+
+    if (name && dob && gender && breed) {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (!userData) {
+            alert('User data not found. Please log in again.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const token = userData.token; // Assuming you have a token for authentication
+        const username = userData.username;
+
+        try {
+            const response = await fetch('http://localhost:3000/add-pet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    username,
+                    name,
+                    dob,
+                    gender,
+                    breed,
+                    petType
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add pet.');
+>>>>>>> 3d0df817a127656de3bb00ddb2c41c34cebde3f7
             }
 
             const pet = {
@@ -52,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+<<<<<<< HEAD
     window.showPetTypeSelection = function () {
         const petType = prompt("Would you like to add a Cat or a Dog?", "Cat/Dog");
 
@@ -130,3 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.createPetForm = createPetForm;
 });
+=======
+
+>>>>>>> 3d0df817a127656de3bb00ddb2c41c34cebde3f7
