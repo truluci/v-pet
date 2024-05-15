@@ -1,83 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About - vPet</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/cat_favicon.ico">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/assets/images/cat_favicon.ico"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #3e0066;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #3e0066;
+      }
 
-        .wrapper {
-            text-align: center;
-            margin-top: 10%;
-            background-color: #8a2be2;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+      }
 
-        h1 {
-            color: rgb(255, 255, 255);
-        }
+      .navbar a {
+        color: white;
+        padding: 15px 20px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+      }
 
-        .content {
-            color: rgb(255, 255, 255);
-            margin-top: 10px;
-        }
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-        }
+      .navbar .logo {
+        margin-left: 10px;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: white;
+      }
 
-        .navbar a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: bold;
-        }
+      .navbar .menu {
+        display: flex;
+      }
 
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+      .navbar .menu a {
+        margin: 0 10px;
+        font-size: 20px;
+      }
 
-        .navbar .logo {
-            margin-left: 10px;
-            font-size: 1.8em;
-            font-weight: bold;
-            color: white;
-        }
+      .wrapper {
+        text-align: center;
+        margin-top: 80px;
+        background-color: #8a2be2;
+        padding: 40px;
+        border-radius: 15px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-        .navbar .menu {
-            display: flex;
-        }
+      .section {
+        margin-bottom: 30px;
+      }
+      .section h1 {
+        font-weight: bold;
+      }
 
-        .navbar .menu a {
-            margin: 0 10px;
-            font-size: 20px;
-        }
+      h1,
+      h2,
+      h3,
+      p {
+        color: white;
+        margin: 0 0 20px 0;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 2.4em;
+      }
+
+      h3 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 1.2em;
+        line-height: 1.6;
+      }
+
+      .team-members,
+      .mission,
+      .vision {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="navbar">
         <div class="logo">vPet</div>
         <div class="menu">
@@ -90,9 +124,40 @@
         </div>
     </nav>
     <div class="wrapper">
+      <div class="section">
         <h1>About vPet</h1>
-        <p class="content">vPet is an innovative platform that allows you to manage and care for your virtual pets. Our mission is to provide a fun and interactive experience for pet lovers everywhere. Join us and take good care of your pets!</p>
-    </div>
-</body>
+        <p>
+          vPet is an innovative platform designed to help you manage and care
+          for your virtual pets. Our mission is to provide a fun and interactive
+          experience for pet lovers everywhere. Join us and take good care of
+          your pets!
+        </p>
+      </div>
 
+      <div class="section team-members">
+        <h2>Group Members</h2>
+        <h3>Halil Ibrahim Atalay</h3>
+        <h3>Mevlüt Yilmaz</h3>
+        <h3>Semih Şengül</h3>
+      </div>
+
+      <div class="section mission">
+        <h2>Mission:</h2>
+        <p>
+          Our goal is to provide important information to increase awareness of
+          the importance of our live animal friends worldwide, and we invite
+          people who will record and monitor them to our site.
+        </p>
+      </div>
+
+      <div class="section vision">
+        <h2>Vision:</h2>
+        <p>
+          After obtaining infinite data about all our animal friends and sharing
+          it with the world, we will try to provide them with friends who will
+          take care of them and not leave them homeless.
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
