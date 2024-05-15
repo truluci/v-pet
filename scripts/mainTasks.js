@@ -44,6 +44,7 @@ async function addPet(petType) {
         }
 
         const token = userData.token; // Assuming you have a token for authentication
+        const username = userData.username;
 
         try {
             const response = await fetch('http://localhost:3000/add-pet', {
@@ -53,6 +54,7 @@ async function addPet(petType) {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
+                    username,
                     name,
                     dob,
                     gender,
@@ -81,4 +83,5 @@ async function addPet(petType) {
         alert('Please fill out all fields.');
     }
 }
+
 

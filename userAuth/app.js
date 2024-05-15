@@ -34,17 +34,18 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// Endpoint to add a pet
 app.post('/add-pet', async (req, res) => {
-    const { name, dob, gender, breed, petType } = req.body;
+    const { username, name, dob, gender, breed, petType } = req.body;
 
-    if (!name || !dob || !gender || !breed || !petType) {
+    if (!username || !name || !dob || !gender || !breed || !petType) {
         return res.status(400).send('Incomplete pet data.');
     }
 
     try {
         const projectData = JSON.parse(await fs.readFile('../data/projectData.json'));
 
-        projectData.push({ name, dob, gender, breed, petType });
+        projectData.push({ username, name, dob, gender, breed, petType });
 
         await fs.writeFile('../data/projectData.json', JSON.stringify(projectData, null, 2));
 
