@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Management System</title>
     <link rel="stylesheet" href="../assets/css/mainStyle.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Welcome, <span id="username"></span>!</h1>
         <p>Manage your pets below:</p>
         <button onclick="showPetTypeSelection()">Add a Pet</button>
+        <button onclick="displayPets()">Display Pets</button>
         <div id="petList">
             <!-- Pets will be displayed here dynamically -->
         </div>
@@ -20,5 +23,7 @@
     </div>
 
     <script src="../scripts/mainTasks.js"></script>
+    <script src="../scripts/displayItems.js"></script>
 </body>
+
 </html>
