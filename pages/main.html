@@ -5,17 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Management System</title>
     <link rel="stylesheet" href="../assets/css/mainStyle.css">
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jsForm Plugin -->
+    <script src="/path/to/src/jquery.jsForm.js"></script>
+    <!-- jsForm Controls and Validation (optional) -->
+    <script src="/path/to/src/jquery.jsForm.controls.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Welcome, <span id="username"></span>!</h1>
         <p>Manage your pets below:</p>
-        <button onclick="">Add a Pet</button>
+        <button onclick="showAddPetModal()">Add a Pet</button>
+        <button onclick="showDeletePetModal()">Delete a Pet</button>
         <div id="petList">
             <!-- Pets will be displayed here dynamically -->
         </div>
     </div>
 
+    <!-- Add Pet Modal -->
+    <div id="addPetModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="hideAddPetModal()">&times;</span>
+            <form id="pet-form">
+                <h2>Add Pet</h2>
+                <div class="input-box">
+                    <input type="text" name="data.pet.name" placeholder="Pet Name" required>
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="input-box">
+                    <input type="date" name="data.pet.dob" placeholder="Date of Birth" required>
+                    <i class="fa-solid fa-calendar"></i>
+                </div>
+                <div class="input-box">
+                    <select name="data.pet.gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <i class="fa-solid fa-venus-mars"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="data.pet.breed" placeholder="Breed" required>
+                    <i class="fa-solid fa-dog"></i>
+                </div>
+                <button type="submit" class="btn">Add Pet</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Pet Modal -->
+    <div id="deletePetModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="hideDeletePetModal()">&times;</span>
+            <form id="delete-pet-form">
+                <h2>Delete Pet</h2>
+                <div class="input-box">
+                    <input type="text" name="data.pet.name" placeholder="Pet Name" required>
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <button type="submit" class="btn">Delete Pet</button>
+            </form>
+        </div>
+    </div>
+
     <script src="../scripts/mainTasks.js"></script>
+    <script>
+        // Sample user data
+        var userData = {
+            username: "JohnDoe",
+            pets: [],
+        };
+
+        // Initialize username
+        document.getElementById("username").innerText = userData.username;
+
+        // Function to show the Add Pet Modal
+        function showAddPetModal() {
+            document.getElementById("addPetModal").style.display = "block";
+        }
+
+        // Function to hide the Add Pet Modal
+        function hideAddPetModal() {
+            document.getElementById("addPetModal").style.display = "none";
+        }
+
+        // Function to show the Delete Pet Modal
+        function showDeletePetModal() {
+            document.getElementById("deletePetModal").style.display = "block";
+        }
+
+        // Function to hide the Delete Pet Modal
+        function hideDeletePetModal() {
+            document.getElementById("deletePetModal").style.display = "none";
+        }
+
+        // Initialize jsForm for the add pet form
+        $(document).ready(function () {
+            $("#pet-form").jsForm({
+                data: {},
+                controls: true,
+                trackChanges: "changed",
+                onsubmit: function () {
+                    var petData = $("#pet-form").jsForm("getData").pet;
+                    userData.pets.push(petData);
+                    displayPets();
+                    hideAddPetModal();
+                    return false; // Prevent default form submission
+                },
+            });
+
+            // Initialize jsForm for the delete pet form
+            $("#delete-pet-form").jsForm({
+                data: {},
+                controls: true,
+                trackChanges: "changed",
+                onsubmit: function () {
+                    var petNameToDelete = $("#delete-pet-form").jsForm("getData").pet.name;
+                    userData.pets = userData.pets.filter(function (pet) {
+                        return pet.name !== petNameToDelete;
+                    });
+                    displayPets();
+                    hideDeletePetModal();
+                    return false; // Prevent default form submission
+                },
+            });
+        });
+
+        // Function to display pets
+        function displayPets() {
+            var petList = document.getElementById("petList");
+            petList.innerHTML = ""; // Clear existing pets
+            userData.pets.forEach(function (pet, index) {
+                var petItem = document.createElement("div");
+                petItem.className = "pet-item";
+                petItem.innerHTML = `
+                    <h3>${pet.name}</h3>
+                    <p>Date of Birth: ${pet.dob}</p>
+                    <p>Gender: ${pet.gender}</p>
+                    <p>Breed: ${pet.breed}</p>
+                `;
+                petList.appendChild(petItem);
+            });
+        }
+    </script>
 </body>
 </html>
