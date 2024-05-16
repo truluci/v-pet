@@ -5,34 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - vPet</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/cat_favicon.ico">
+    <link rel="stylesheet" href="/ctis255-project-v-pet/assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/ctis255-project-v-pet/assets/images/cat_favicon.ico">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #3e0066;
-        }
-
-        .wrapper {
-            text-align: center;
-            margin-top: 10%;
-            background-color: #8a2be2;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        h1 {
-            color: rgb(255, 255, 255);
-        }
-
-        .content {
-            color: rgb(255, 255, 255);
-            margin-top: 10px;
         }
 
         .navbar {
@@ -74,6 +54,91 @@
             margin: 0 10px;
             font-size: 20px;
         }
+
+        .wrapper {
+            margin-top: 80px;
+            padding: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #8a2be2;
+            border-radius: 15px;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .service-entry {
+            background-color: #6200ea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-entry img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .service-entry h2 {
+            margin-top: 0;
+        }
+
+        .service-entry p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .service-entry a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .service-entry a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -91,8 +156,63 @@
     </nav>
     <div class="wrapper">
         <h1>Our Services</h1>
-        <p class="content">We offer a variety of services to help you take care of your virtual pets. From daily feeding and grooming to interactive play sessions and health check-ups, vPet ensures your pets are always happy and healthy.</p>
+        <div class="service-entry">
+            <img src="/ctis255-project-v-pet/assets/images/AERA-Maintaining-a-Healthy-Diet-for-Your-Pet.jpg" alt="Daily Feeding">
+           
+            <div>
+                <h2>Daily Feeding <span class="tooltip">?<span class="tooltiptext">Regular nutritious meals</span></span></h2>
+                <p>We ensure your virtual pet gets the proper nutrition with our daily feeding service.</p>
+                <a onclick="toggleContent('service1')">Read more</a>
+                <div id="service1" class="hidden-content">
+                    <p>Our feeding schedules are tailored to meet the dietary needs of your virtual pet, ensuring they stay healthy and happy. We provide a variety of virtual foods and supplements to cater to different pet species and preferences.</p>
+                </div>
+            </div>
+        </div>
+        <div class="service-entry">
+            <img src="/ctis255-project-v-pet/assets/images/dog-grooming-1.png.webp" alt="Grooming">
+            <div>
+                <h2>Grooming <span class="tooltip">?<span class="tooltiptext">Keep pets looking great</span></span></h2>
+                <p>Keep your virtual pet looking great with our grooming services.</p>
+                <a onclick="toggleContent('service2')">Read more</a>
+                <div id="service2" class="hidden-content">
+                    <p>Our grooming services include virtual baths, fur trimming, and nail clipping. Regular grooming helps prevent health issues and keeps your pet looking their best.</p>
+                </div>
+            </div>
+        </div>
+        <div class="service-entry">
+            <img src="/ctis255-project-v-pet/assets/images/dog-toys-3-1700552669145.webp" alt="Interactive Play Sessions">
+            <div>
+                <h2>Interactive Play Sessions <span class="tooltip">?<span class="tooltiptext">Fun and interactive</span></span></h2>
+                <p>Engage your virtual pet with fun and interactive play sessions.</p>
+                <a onclick="toggleContent('service3')">Read more</a>
+                <div id="service3" class="hidden-content">
+                    <p>Our play sessions are designed to stimulate your pet's mind and keep them active. From fetch to puzzle games, we offer a variety of activities to keep your pet entertained.</p>
+                </div>
+            </div>
+        </div>
+        <div class="service-entry">
+            <img src="/ctis255-project-v-pet/assets/images/images.jpeg" alt="Health Check-ups">
+            <div>
+                <h2>Health Check-ups <span class="tooltip">?<span class="tooltiptext">Regular health monitoring</span></span></h2>
+                <p>Regular health check-ups to monitor and maintain your pet's well-being.</p>
+                <a onclick="toggleContent('service4')">Read more</a>
+                <div id="service4" class="hidden-content">
+                    <p>Our virtual veterinarians conduct regular health check-ups to ensure your pet is in optimal health. We monitor for signs of illness and provide advice on how to address any health concerns.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
