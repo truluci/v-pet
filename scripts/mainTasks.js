@@ -43,7 +43,7 @@ async function addPet(petType) {
             return;
         }
 
-        const token = userData.token; // Assuming you have a token for authentication
+        const token = userData.token;
         const username = userData.username;
 
         try {

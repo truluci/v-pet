@@ -1,10 +1,18 @@
-function showPetTypeSelection() {
-    const petType = prompt("Would you like to add a Cat or a Dog?", "Cat/Dog");
+$(document).ready(function() {
+    $('#showPetTypeSelectionBtn').on('click', function() {
+        $('#petTypeSelectionContainer').show();
+    });
 
-    if (petType) {
-        createPetForm(petType.trim().toLowerCase());
-    }
-}
+    $('#selectPetTypeBtn').on('click', function() {
+        const petType = $('#petType').val();
+        if (petType) {
+            createPetForm(petType);
+            $('#petTypeSelectionContainer').hide();
+        } else {
+            alert('Please select a pet type.');
+        }
+    });
+});
 
 function createPetForm(petType) {
     const formContainer = $('#petFormContainer');
