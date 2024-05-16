@@ -83,5 +83,3 @@ async function addPet(petType) {
         alert('Please fill out all fields.');
     }
 }
-
-
