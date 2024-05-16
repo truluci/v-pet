@@ -31,3 +31,19 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+h1 {
+    font: bold 5em "Georgia", serif;
+    color: #90a4ae;
+}
+
+.z-text {
+    /* Tip: Apply CSS transforms here */
+    /* rotateX() == up/down */
+    /* rotateY() == left/right */
+    transform: rotateX(15deg) rotateY(-30deg);
+}
+
+.z-layer:not(:first-child) {
+    color: #455a64;
+}
