@@ -1,5 +1,4 @@
 function showPetTypeSelection() {
-    // Create a modal or simple prompt to ask the user for the pet type
     const petType = prompt("Would you like to add a Cat or a Dog?", "Cat/Dog");
 
     if (petType) {
@@ -8,70 +7,50 @@ function showPetTypeSelection() {
 }
 
 function createPetForm(petType) {
-    const formContainer = document.getElementById('petFormContainer');
-    formContainer.innerHTML = ''; // Clear any existing form
+    const formContainer = $('#petFormContainer');
+    formContainer.empty(); // Clear any existing form
 
-    // Create the form elements
-    const form = document.createElement('form');
-    form.id = 'petForm';
+    const form = $('<form>').attr('id', 'petForm');
 
-    const title = document.createElement('h2');
-    title.innerText = `Add a new ${petType.charAt(0).toUpperCase() + petType.slice(1)}`;
-    form.appendChild(title);
+    const title = $('<h2>').text(`Add a new ${petType.charAt(0).toUpperCase() + petType.slice(1)}`);
+    form.append(title);
 
-    const nameLabel = document.createElement('label');
-    nameLabel.innerText = 'Name: ';
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.name = 'name';
-    nameLabel.appendChild(nameInput);
-    form.appendChild(nameLabel);
+    const nameLabel = $('<label>').text('Name: ');
+    const nameInput = $('<input>').attr({ type: 'text', name: 'name' });
+    nameLabel.append(nameInput);
+    form.append(nameLabel);
 
-    form.appendChild(document.createElement('br'));
+    form.append($('<br>'));
 
-    const dobLabel = document.createElement('label');
-    dobLabel.innerText = 'Date of Birth: ';
-    const dobInput = document.createElement('input');
-    dobInput.type = 'date';
-    dobInput.name = 'dob';
-    dobLabel.appendChild(dobInput);
-    form.appendChild(dobLabel);
+    const dobLabel = $('<label>').text('Date of Birth: ');
+    const dobInput = $('<input>').attr({ type: 'date', name: 'dob' });
+    dobLabel.append(dobInput);
+    form.append(dobLabel);
 
-    form.appendChild(document.createElement('br'));
+    form.append($('<br>'));
 
-    const genderLabel = document.createElement('label');
-    genderLabel.innerText = 'Gender: ';
-    const genderSelect = document.createElement('select');
-    genderSelect.name = 'gender';
-    const maleOption = document.createElement('option');
-    maleOption.value = 'male';
-    maleOption.innerText = 'Male';
-    const femaleOption = document.createElement('option');
-    femaleOption.value = 'female';
-    femaleOption.innerText = 'Female';
-    genderSelect.appendChild(maleOption);
-    genderSelect.appendChild(femaleOption);
-    genderLabel.appendChild(genderSelect);
-    form.appendChild(genderLabel);
+    const genderLabel = $('<label>').text('Gender: ');
+    const genderSelect = $('<select>').attr('name', 'gender');
+    const maleOption = $('<option>').attr({ value: 'male' }).text('Male');
+    const femaleOption = $('<option>').attr({ value: 'female' }).text('Female');
+    genderSelect.append(maleOption, femaleOption);
+    genderLabel.append(genderSelect);
+    form.append(genderLabel);
 
-    form.appendChild(document.createElement('br'));
+    form.append($('<br>'));
 
-    const breedLabel = document.createElement('label');
-    breedLabel.innerText = 'Breed: ';
-    const breedInput = document.createElement('input');
-    breedInput.type = 'text';
-    breedInput.name = 'breed';
-    breedLabel.appendChild(breedInput);
-    form.appendChild(breedLabel);
+    const breedLabel = $('<label>').text('Breed: ');
+    const breedInput = $('<input>').attr({ type: 'text', name: 'breed' });
+    breedLabel.append(breedInput);
+    form.append(breedLabel);
 
-    form.appendChild(document.createElement('br'));
+    form.append($('<br>'));
 
-    const submitButton = document.createElement('button');
-    submitButton.type = 'button';
-    submitButton.innerText = 'Add Pet';
-    submitButton.onclick = () => addPet(petType);
-    form.appendChild(submitButton);
+    const submitButton = $('<button>').attr('type', 'button').text('Add Pet');
+    submitButton.on('click', function() {
+        addPet(petType);
+    });
+    form.append(submitButton);
 
-    // Append the form to the form container
-    formContainer.appendChild(form);
+    formContainer.append(form);
 }
