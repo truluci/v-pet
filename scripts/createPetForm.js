@@ -62,3 +62,14 @@ function createPetForm(petType) {
 
     formContainer.append(form);
 }
+
+function addPet(petType, petName) {
+    if (petName) {
+        const petSidebarList = $('#petSidebarList');
+        const newPetItem = $('<li>').text(petName);
+        petSidebarList.append(newPetItem);
+        alert(`${petName} the ${petType} has been added!`);
+    } else {
+        alert('Please enter a name for the pet.');
+    }
+}
