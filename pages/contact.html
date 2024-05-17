@@ -1,98 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact - vPet</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/images/cat_favicon.ico">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/ctis255-project-v-pet/assets/images/cat_favicon.ico"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #3e0066;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #3e0066;
+      }
 
-        .wrapper {
-            text-align: center;
-            margin-top: 10%;
-            background-color: #8a2be2;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+      }
 
-        h1 {
-            color: rgb(255, 255, 255);
-        }
+      .navbar a {
+        color: white;
+        padding: 15px 20px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+      }
 
-        .content {
-            color: rgb(255, 255, 255);
-            margin-top: 10px;
-        }
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-        }
+      .navbar .logo {
+        margin-left: 10px;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: white;
+      }
 
-        .navbar a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: bold;
-        }
+      .navbar .menu {
+        display: flex;
+      }
 
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+      .navbar .menu a {
+        margin: 0 10px;
+        font-size: 20px;
+      }
 
-        .navbar .logo {
-            margin-left: 10px;
-            font-size: 1.8em;
-            font-weight: bold;
-            color: white;
-        }
+      .wrapper {
+        margin-top: 80px;
+        padding: 20px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #8a2be2;
+        border-radius: 15px;
+        color: white;
+        text-align: left;
+      }
 
-        .navbar .menu {
-            display: flex;
-        }
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 3em;
+      }
 
-        .navbar .menu a {
-            margin: 0 10px;
-            font-size: 20px;
-        }
+      .content {
+        margin-top: 10px;
+      }
+
+      .contact-info {
+        margin-bottom: 30px;
+      }
+
+      .contact-info h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+        color: #ffd700;
+      }
+
+      .contact-info h3 {
+        font-size: 1.5em;
+        margin-top: 20px;
+        color: #ff6347;
+      }
+
+      .contact-info p {
+        margin: 5px 0;
+        font-size: 1.2em;
+      }
+
+      .contact-info a {
+        text-decoration: none;
+        color: #00ffff;
+      }
+
+      .contact-form {
+        background-color: #6200ea;
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .contact-form h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+        color: #ffd700;
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+
+      .contact-form button {
+        background-color: #00ff00;
+        color: #3e0066;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
+
+      .contact-form button:hover {
+        background-color: #32cd32;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="navbar">
-        <div class="logo">vPet</div>
-        <div class="menu">
-            <a href="/index.html">Home</a>
-            <a href="/pages/about.html">About</a>
-            <a href="/pages/announcements.html">Announcements</a>
-            <a href="/pages/services.html">Services</a>
-            <a href="/pages/blogs.html">Blogs</a>
-            <a href="/pages/contact.html">Contact</a>
-        </div>
+      <div class="logo">vPet</div>
+      <div class="menu">
+        <a href="/index.html">Home</a>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/announcements.html">Announcements</a>
+        <a href="/pages/services.html">Services</a>
+        <a href="/pages/blogs.html">Blogs</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </nav>
     <div class="wrapper">
-        <h1>Contact Us</h1>
-        <p class="content">If you have any questions or need assistance, please feel free to reach out to us. We are here to help you with all your virtual pet needs.</p>
-    </div>
-</body>
+      <h1>Contact Us</h1>
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <h3>Halil Ibrahim Atalay</h3>
+        <p><strong>Phone:</strong> 05531871083</p>
+        <p><strong>Location:</strong> Keçiören, Ankara</p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:ibrahim.atalay@ug.bilkent.edu.tr"
+            >ibrahim.atalay@ug.bilkent.edu.tr</a
+          >
+        </p>
 
+        <h3>Mevlüt Yılmaz</h3>
+        <p><strong>Phone:</strong> 0554543254</p>
+        <p><strong>Location:</strong> Aktepe, Ankara</p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:mevlut.yilmaz@ug.bilkent.edu.tr"
+            >mevlut.yilmaz@ug.bilkent.edu.tr</a
+          >
+        </p>
+
+        <h3>Semih Şengül</h3>
+        <p><strong>Phone:</strong> 0543254565</p>
+        <p><strong>Location:</strong> Gölbaşı, Ankara</p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:semih.sengul@ug.bilkent.edu.tr"
+            >semih.sengul@ug.bilkent.edu.tr</a
+          >
+        </p>
+      </div>
+      <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form action="https://formspree.io/f/{your-form-id}" method="post">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

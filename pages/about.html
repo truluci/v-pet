@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About - vPet</title>
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="/ctis255-project-v-pet/assets/css/style.css" />
     <link
       rel="icon"
       type="image/x-icon"
-      href="/assets/images/cat_favicon.ico"
+      href="/ctis255-project-v-pet/assets/images/cat_favicon.ico"
     />
     <style>
       body {
@@ -72,6 +72,7 @@
       .section {
         margin-bottom: 30px;
       }
+
       .section h1 {
         font-weight: bold;
       }
@@ -108,20 +109,38 @@
         padding: 20px;
         border-radius: 10px;
       }
+
+      .team-members {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .team-member {
+        text-align: center;
+        margin: 20px;
+      }
+
+      .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
     </style>
   </head>
 
   <body>
     <nav class="navbar">
-        <div class="logo">vPet</div>
-        <div class="menu">
-            <a href="/index.html">Home</a>
-            <a href="/pages/about.html">About</a>
-            <a href="/pages/announcements.html">Announcements</a>
-            <a href="/pages/services.html">Services</a>
-            <a href="/pages/blogs.html">Blogs</a>
-            <a href="/pages/contact.html">Contact</a>
-        </div>
+      <div class="logo">vPet</div>
+      <div class="menu">
+        <a href="/index.html">Home</a>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/announcements.html">Announcements</a>
+        <a href="/pages/services.html">Services</a>
+        <a href="/pages/blogs.html">Blogs</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </nav>
     <div class="wrapper">
       <div class="section">
@@ -136,9 +155,27 @@
 
       <div class="section team-members">
         <h2>Group Members</h2>
-        <h3>Halil Ibrahim Atalay</h3>
-        <h3>Mevlüt Yilmaz</h3>
-        <h3>Semih Şengül</h3>
+        <div class="team-member">
+          <img
+            src="/ctis255-project-v-pet/assets/images/Screenshot 2024-05-16 at 12.09.00.png"
+            alt="Halil Ibrahim Atalay"
+          />
+          <h3>Halil Ibrahim Atalay</h3>
+        </div>
+        <div class="team-member">
+          <img
+            src="/ctis255-project-v-pet/assets/images/Screenshot 2024-05-15 at 23.56.20.png"
+            alt="Mevlüt Yilmaz"
+          />
+          <h3>Mevlüt Yilmaz</h3>
+        </div>
+        <div class="team-member">
+          <img
+            src="/ctis255-project-v-pet/assets/images/Screenshot 2024-05-15 at 23.56.52.png"
+            alt="Semih Şengül"
+          />
+          <h3>Semih Şengül</h3>
+        </div>
       </div>
 
       <div class="section mission">
