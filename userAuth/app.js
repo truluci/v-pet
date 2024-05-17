@@ -34,7 +34,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Endpoint to add a pet
 app.post('/add-pet', async (req, res) => {
     const { username, name, dob, gender, breed, petType } = req.body;
 
@@ -54,6 +53,25 @@ app.post('/add-pet', async (req, res) => {
     } catch (error) {
         console.error('Error adding pet:', error);
         res.status(500).send('Failed to add pet.');
+    }
+});
+
+app.get('/get-pets', async (req, res) => {
+    const { username } = req.query;
+
+    if (!username) {
+        return res.status(400).send('Username is required.');
+    }
+
+    try {
+        const projectData = JSON.parse(await fs.readFile('../data/projectData.json'));
+        const userPets = projectData.filter(pet => pet.username === username);
+
+        res.json(userPets);
+
+    } catch (error) {
+        console.error('Error fetching pets:', error);
+        res.status(500).send('Failed to fetch pets.');
     }
 });
 
