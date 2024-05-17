@@ -22,7 +22,21 @@ document.addEventListener("DOMContentLoaded", async function() {
             const pets = await response.json();
             pets.forEach(pet => {
                 const newPetItem = document.createElement('li');
+                newPetItem.classList.add('pet-item');
                 newPetItem.textContent = pet.name;
+                newPetItem.dataset.petName = pet.name;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-btn');
+                deleteButton.textContent = 'Delete';
+
+                const updateButton = document.createElement('button');
+                updateButton.classList.add('update-btn');
+                updateButton.textContent = 'Update';
+
+                newPetItem.appendChild(deleteButton);
+                newPetItem.appendChild(updateButton);
+
                 petSidebarList.appendChild(newPetItem);
             });
         } catch (error) {
@@ -32,7 +46,6 @@ document.addEventListener("DOMContentLoaded", async function() {
         window.location.href = 'login.html';
     }
 });
-
 
 async function addPet(petType) {
     const form = document.getElementById('petForm');

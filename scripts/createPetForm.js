@@ -43,7 +43,6 @@ function createPetForm(petType) {
 
     formContainer.append(form);
 }
-
 async function addPet(petType) {
     const form = document.getElementById('petForm');
     const name = form.elements['name'].value;
