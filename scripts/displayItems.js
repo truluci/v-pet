@@ -23,6 +23,7 @@ $(document).ready(function() {
             return response.json();
         })
         .then(pet => {
+            console.log('Pet details:', pet); // Log pet details for debugging
             $('#petInfoContainer').html(`
                 <h3>${pet.name}</h3>
                 <p>Type: ${pet.petType}</p>
@@ -32,7 +33,7 @@ $(document).ready(function() {
             `);
         })
         .catch(error => {
-            console.error('Error fetching pet details:', error);
+            console.error('Error fetching pet details:', error); // Log error for debugging
             alert('Failed to fetch pet details.');
         });
     });

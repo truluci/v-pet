@@ -124,18 +124,18 @@ app.get('/get-pet', async (req, res) => {
     const { username, name } = req.query;
 
     if (!username || !name) {
-        return res.status(400).send('Incomplete data.');
+        return res.status(400).send('Missing username or pet name.');
     }
 
     try {
         const projectData = JSON.parse(await fs.readFile('../data/projectData.json'));
         const pet = projectData.find(pet => pet.username === username && pet.name === name);
 
-        if (pet) {
-            res.json(pet);
-        } else {
-            res.status(404).send('Pet not found.');
+        if (!pet) {
+            return res.status(404).send('Pet not found.');
         }
+
+        res.status(200).json(pet);
     } catch (error) {
         console.error('Error fetching pet:', error);
         res.status(500).send('Failed to fetch pet.');
