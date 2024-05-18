@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-document.addEventListener("DOMContentLoaded", function () {
-=======
-document.addEventListener("DOMContentLoaded", async function() {
->>>>>>> 7aeca45610c2589317b8a88de413f112e44bc767
+
+document.addEventListener("DOMContentLoaded", async function () {
     const usernameElement = document.getElementById('username');
     const petSidebarList = document.getElementById('petSidebarList');
 
