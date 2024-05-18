@@ -1,29 +1,53 @@
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function () {
+=======
+document.addEventListener("DOMContentLoaded", async function() {
+>>>>>>> 7aeca45610c2589317b8a88de413f112e44bc767
     const usernameElement = document.getElementById('username');
-    const petListElement = document.getElementById('petList');
+    const petSidebarList = document.getElementById('petSidebarList');
 
-    // Get user data from localStorage (assuming user is already logged in)
     const userData = JSON.parse(localStorage.getItem('currentUser'));
 
     if (userData) {
         const username = userData.username;
         usernameElement.textContent = username;
-    } else {
-        // Redirect to login page if user data is not found
-        window.location.href = 'login.html';
-    }
 
-    function addPet() {
-        const petName = prompt('Enter pet name:');
-        if (petName) {
-            // Create a new pet element
-            const newPetElement = document.createElement('div');
-            newPetElement.textContent = petName;
-            newPetElement.classList.add('pet-item');
+        try {
+            const response = await fetch(`http://localhost:3000/get-pets?username=${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${userData.token}`
+                }
+            });
 
-            // Append the new pet element to the pet list
-            petListElement.appendChild(newPetElement);
+            if (!response.ok) {
+                throw new Error('Failed to fetch pets.');
+            }
+
+            const pets = await response.json();
+            pets.forEach(pet => {
+                const newPetItem = document.createElement('li');
+                newPetItem.classList.add('pet-item');
+                newPetItem.textContent = pet.name;
+                newPetItem.dataset.petName = pet.name;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-btn');
+                deleteButton.textContent = 'Delete';
+
+                const updateButton = document.createElement('button');
+                updateButton.classList.add('update-btn');
+                updateButton.textContent = 'Update';
+
+                newPetItem.appendChild(deleteButton);
+                newPetItem.appendChild(updateButton);
+
+                petSidebarList.appendChild(newPetItem);
+            });
+        } catch (error) {
+            console.error('Error fetching pets:', error);
         }
+    } else {
+        window.location.href = 'login.html';
     }
 });
 
@@ -68,10 +92,9 @@ async function addPet(petType) {
             }
 
             const responseData = await response.json();
-            console.log(responseData); // Log response from server
-            alert('Pet added successfully.');
+            console.log(responseData);
+            //alert('Pet added successfully.');
 
-            // Clear the form
             form.reset();
             document.getElementById('petFormContainer').innerHTML = '';
 

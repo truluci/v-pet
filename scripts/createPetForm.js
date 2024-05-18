@@ -16,42 +16,23 @@ $(document).ready(function() {
 
 function createPetForm(petType) {
     const formContainer = $('#petFormContainer');
-    formContainer.empty(); // Clear any existing form
+    formContainer.empty();
 
     const form = $('<form>').attr('id', 'petForm');
 
     const title = $('<h2>').text(`Add a new ${petType.charAt(0).toUpperCase() + petType.slice(1)}`);
     form.append(title);
 
-    const nameLabel = $('<label>').text('Name: ');
-    const nameInput = $('<input>').attr({ type: 'text', name: 'name' });
-    nameLabel.append(nameInput);
-    form.append(nameLabel);
-
+    form.append($('<label>').text('Name: ').append($('<input>').attr({ type: 'text', name: 'name' })));
     form.append($('<br>'));
 
-    const dobLabel = $('<label>').text('Date of Birth: ');
-    const dobInput = $('<input>').attr({ type: 'date', name: 'dob' });
-    dobLabel.append(dobInput);
-    form.append(dobLabel);
-
+    form.append($('<label>').text('Date of Birth: ').append($('<input>').attr({ type: 'date', name: 'dob' })));
     form.append($('<br>'));
 
-    const genderLabel = $('<label>').text('Gender: ');
-    const genderSelect = $('<select>').attr('name', 'gender');
-    const maleOption = $('<option>').attr({ value: 'male' }).text('Male');
-    const femaleOption = $('<option>').attr({ value: 'female' }).text('Female');
-    genderSelect.append(maleOption, femaleOption);
-    genderLabel.append(genderSelect);
-    form.append(genderLabel);
-
+    form.append($('<label>').text('Gender: ').append($('<select>').attr('name', 'gender').append($('<option>').attr({ value: 'male' }).text('Male')).append($('<option>').attr({ value: 'female' }).text('Female'))));
     form.append($('<br>'));
 
-    const breedLabel = $('<label>').text('Breed: ');
-    const breedInput = $('<input>').attr({ type: 'text', name: 'breed' });
-    breedLabel.append(breedInput);
-    form.append(breedLabel);
-
+    form.append($('<label>').text('Breed: ').append($('<input>').attr({ type: 'text', name: 'breed' })));
     form.append($('<br>'));
 
     const submitButton = $('<button>').attr('type', 'button').text('Add Pet');
@@ -62,14 +43,64 @@ function createPetForm(petType) {
 
     formContainer.append(form);
 }
+async function addPet(petType) {
+    const form = document.getElementById('petForm');
+    const name = form.elements['name'].value;
+    const dob = form.elements['dob'].value;
+    const gender = form.elements['gender'].value;
+    const breed = form.elements['breed'].value;
 
-function addPet(petType, petName) {
-    if (petName) {
-        const petSidebarList = $('#petSidebarList');
-        const newPetItem = $('<li>').text(petName);
-        petSidebarList.append(newPetItem);
-        alert(`${petName} the ${petType} has been added!`);
+    if (name && dob && gender && breed) {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (!userData) {
+            alert('User data not found. Please log in again.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const token = userData.token;
+        const username = userData.username;
+
+        try {
+            const response = await fetch('http://localhost:3000/add-pet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    username,
+                    name,
+                    dob,
+                    gender,
+                    breed,
+                    petType
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add pet.');
+            }
+
+            const responseData = await response.json();
+            console.log(responseData);
+            alert('Pet added successfully.');
+
+            form.reset();
+            document.getElementById('petFormContainer').innerHTML = '';
+
+            // Add the new pet to the sidebar
+            const petSidebarList = document.getElementById('petSidebarList');
+            const newPetItem = document.createElement('li');
+            newPetItem.textContent = name;
+            petSidebarList.appendChild(newPetItem);
+
+        } catch (error) {
+            console.error('Error adding pet:', error);
+            alert('Failed to add pet. Please try again.');
+        }
     } else {
-        alert('Please enter a name for the pet.');
+        alert('Please fill out all fields.');
     }
 }
