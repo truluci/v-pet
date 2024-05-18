@@ -27,7 +27,7 @@ $(document).ready(function() {
             }
 
             $(this).parent().remove();
-            alert('Pet deleted successfully.');
+            //alert('Pet deleted successfully.');
         } catch (error) {
             console.error('Error deleting pet:', error);
             alert('Failed to delete pet. Please try again.');

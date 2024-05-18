@@ -69,7 +69,7 @@ $(document).ready(function() {
                         throw new Error('Failed to update pet.');
                     }
 
-                    alert('Pet updated successfully.');
+                    //alert('Pet updated successfully.');
                     petItem.find('.pet-name').text(updatedName);
                     $('#petFormContainer').empty();
                 } catch (error) {

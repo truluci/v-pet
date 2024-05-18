@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const password = passwordInput.value.trim();
         const confirmPassword = confirmPasswordInput.value.trim();
 
-        // Basic validation
         if (username === '' || password === '' || confirmPassword === '') {
             alert('Please fill in all fields.');
             return;
@@ -35,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!response.ok) {
                 throw new Error('Registration failed.');
             }
-            return response.text(); // Assuming server responds with a text message
+            return response.text();
         })
         .then(message => {
-            alert(message); // Display registration success message
-            window.location.href = '../pages/login.html'; // Redirect to login page
-            registerForm.reset(); // Reset the form
+            alert(message);
+            window.location.href = '../pages/login.html';
+            registerForm.reset();
         })
         .catch(error => {
             console.error('Registration error:', error);

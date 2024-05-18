@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 localStorage.setItem('currentUser', JSON.stringify(user));
 
                 alert('Login successful!');
-                window.location.href = '../pages/main.html'; // Redirect to main page
+                window.location.href = '../pages/main.html';
             } else {
                 alert('Invalid username or password. Please try again.');
             }

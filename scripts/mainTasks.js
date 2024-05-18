@@ -88,10 +88,9 @@ async function addPet(petType) {
             }
 
             const responseData = await response.json();
-            console.log(responseData); // Log response from server
-            alert('Pet added successfully.');
+            console.log(responseData);
+            //alert('Pet added successfully.');
 
-            // Clear the form
             form.reset();
             document.getElementById('petFormContainer').innerHTML = '';
 
