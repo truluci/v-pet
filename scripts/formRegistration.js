@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(message => {
             alert(message);
-            window.location.href = '../pages/login.html';
+            window.location.href = '/login';
             registerForm.reset();
         })
         .catch(error => {

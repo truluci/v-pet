@@ -55,7 +55,7 @@ async function addPet(petType) {
 
         if (!userData) {
             alert('User data not found. Please log in again.');
-            window.location.href = 'login.html';
+            window.location.href = '/login';
             return;
         }
 

@@ -15,24 +15,26 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        // Send login data to server
         try {
-            const response = await fetch('../data/userData.json');
-            const userData = await response.json();
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
 
-            const user = userData.find(user => user.username === username && user.password === password);
-
-            if (user) {
-                // user datayı main pagede kullanmak için local storage'a kaydediyoruz
-                localStorage.setItem('currentUser', JSON.stringify(user));
-
-                alert('Login successful!');
-                window.location.href = '../pages/main.html';
-            } else {
-                alert('Invalid username or password. Please try again.');
+            if (!response.ok) {
+                throw new Error('Login failed.');
             }
+
+            const userData = await response.json();
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            window.location.href = '/main';
         } catch (error) {
-            console.error('Error fetching or parsing user data:', error);
-            alert('An error occurred while processing your request. Please try again later.');
+            console.error('Login error:', error);
+            alert('An error occurred during login. Please try again.');
         }
 
         loginForm.reset();
