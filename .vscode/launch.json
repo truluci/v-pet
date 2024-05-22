@@ -8,7 +8,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "Open app.js",
-            "file": "c:\\My project\\ctis255-project-v-pet\\app.js"
+            "file": "c:\\My project\\v-pet\\app.js"
         }
     ]
 }
