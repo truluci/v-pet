@@ -98,8 +98,8 @@ app.post('/login', async (req, res) => {
         if (!user) {
             return res.status(401).send('Invalid username or password.');
         }
-
-        res.json({ message: 'Login successful.', token: 'dummy-token' });
+        
+        res.json({ message: 'Login successful.', token: 'dummy-token', username: user.username});
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).send('An error occurred during login.');

@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", async function() {
     const petSidebarList = document.getElementById('petSidebarList');
 
     const userData = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('UserData:', userData);
 
     if (userData) {
         const username = userData.username;
+        console.log('Username:', username);
         usernameElement.textContent = username;
 
         try {
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             console.error('Error fetching pets:', error);
         }
     } else {
+        console.log('No user data found in localStorage.');
         window.location.href = '/login';
     }
 });
@@ -53,11 +56,6 @@ async function addPet(petType) {
     const dob = form.elements['dob'].value;
     const gender = form.elements['gender'].value;
     const breed = form.elements['breed'].value.trim();
-
-    console.log('Name:', name);
-    console.log('Date of Birth:', dob);
-    console.log('Gender:', gender);
-    console.log('Breed:', breed);
 
     if (!name || !dob || !gender || !breed) {
         alert('Please fill out all fields.');

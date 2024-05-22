@@ -1,3 +1,42 @@
 [
-  
+  {
+    "username": "melo",
+    "name": "kanka",
+    "dob": "2024-05-01",
+    "gender": "male",
+    "breed": "grger",
+    "petType": "dog"
+  },
+  {
+    "username": "melo",
+    "name": "neyy",
+    "dob": "2024-05-01",
+    "gender": "male",
+    "breed": "yuh",
+    "petType": "cat"
+  },
+  {
+    "username": "melo",
+    "name": "dsa",
+    "dob": "2024-04-30",
+    "gender": "male",
+    "breed": "dsadad",
+    "petType": "cat"
+  },
+  {
+    "username": "melo",
+    "name": "dsadas",
+    "dob": "2024-05-01",
+    "gender": "male",
+    "breed": "egrg",
+    "petType": "cat"
+  },
+  {
+    "username": "melo",
+    "name": "dasd",
+    "dob": "2024-05-01",
+    "gender": "male",
+    "breed": "dasda",
+    "petType": "dog"
+  }
 ]

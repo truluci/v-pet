@@ -33,7 +33,7 @@ $(document).ready(function() {
         })
         .catch(error => {
             console.error('Error fetching pet details:', error);
-            alert('Failed to fetch pet details.');
+            //alert('Failed to fetch pet details.');
         });
     });
 });

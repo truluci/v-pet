@@ -45,62 +45,64 @@ function createPetForm(petType) {
 }
 async function addPet(petType) {
     const form = document.getElementById('petForm');
-    const name = form.elements['name'].value;
+    const name = form.elements['name'].value.trim();
     const dob = form.elements['dob'].value;
     const gender = form.elements['gender'].value;
-    const breed = form.elements['breed'].value;
+    const breed = form.elements['breed'].value.trim();
 
-    if (name && dob && gender && breed) {
-        const userData = JSON.parse(localStorage.getItem('currentUser'));
-
-        if (!userData) {
-            alert('User data not found. Please log in again.');
-            window.location.href = '/login';
-            return;
-        }
-
-        const token = userData.token;
-        const username = userData.username;
-
-        try {
-            const response = await fetch('http://localhost:3000/add-pet', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    username,
-                    name,
-                    dob,
-                    gender,
-                    breed,
-                    petType
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to add pet.');
-            }
-
-            const responseData = await response.json();
-            console.log(responseData);
-            alert('Pet added successfully.');
-
-            form.reset();
-            document.getElementById('petFormContainer').innerHTML = '';
-
-            // Add the new pet to the sidebar
-            const petSidebarList = document.getElementById('petSidebarList');
-            const newPetItem = document.createElement('li');
-            newPetItem.textContent = name;
-            petSidebarList.appendChild(newPetItem);
-
-        } catch (error) {
-            console.error('Error adding pet:', error);
-            alert('Failed to add pet. Please try again.');
-        }
-    } else {
+    if (!name || !dob || !gender || !breed) {
         alert('Please fill out all fields.');
+        return;
+    }
+
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (!userData) {
+        alert('User data not found. Please log in again.');
+        window.location.href = '/login';
+        return;
+    }
+
+    const token = userData.token;
+    const username = userData.username;
+
+    try {
+        const response = await fetch('http://localhost:3000/add-pet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                username,
+                name,
+                dob,
+                gender,
+                breed,
+                petType
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to add pet: ${errorText}`);
+        }
+
+        const responseData = await response.json();
+        console.log(responseData);
+        alert('Pet added successfully.');
+
+        form.reset();
+        document.getElementById('petFormContainer').innerHTML = '';
+
+        // Add the new pet to the sidebar
+        const petSidebarList = document.getElementById('petSidebarList');
+        const newPetItem = document.createElement('li');
+        newPetItem.textContent = name;
+        petSidebarList.appendChild(newPetItem);
+
+    } catch (error) {
+        console.error('Error adding pet:', error);
+        alert(error.message);
     }
 }
